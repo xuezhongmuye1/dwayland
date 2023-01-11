@@ -54,6 +54,7 @@
 #include "ddeshell.h"
 #include "strut.h"
 #include "globalproperty.h"
+#include "xwayland_keyboard_grab_v1.h"
 // Qt
 #include <QDebug>
 // wayland
@@ -97,6 +98,7 @@
 #include <wayland-strut-client-protocol.h>
 #include <wayland-dde-globalproperty-client-protocol.h>
 #include <wayland-wlr-data-control-unstable-v1-client-protocol.h>
+#include <wayland-xwayland-keyboard-grab-v1-client-protocol.h>
 
 /*****
  * How to add another interface:
@@ -462,6 +464,13 @@ static const QMap<Registry::Interface, SuppertedInterfaceData> s_interfaces = {
         &Registry::dataControlDeviceManagerAnnounced,
         &Registry::dataControlDeviceManagerRemoved
     }},
+    {Registry::Interface::ZWPXwaylandKeyboardGrabV1, {
+        1,
+        QByteArrayLiteral("zwp_xwayland_keyboard_grab_manager_v1"),
+        &zwp_xwayland_keyboard_grab_manager_v1_interface,
+        &Registry::xwaylandKeyboardGrabV1Announced,
+        &Registry::xwaylandKeyboardGrabV1Removed
+    }},
 };
 // clang-format on
 
@@ -782,6 +791,7 @@ BIND(DDEShell, dde_shell)
 BIND(Strut, com_deepin_kwin_strut)
 BIND(GlobalProperty, dde_globalproperty)
 BIND(DataControlDeviceManager, zwlr_data_control_manager_v1)
+BIND2(ZWPXwaylandKeyboardGrabManagerV1, ZWPXwaylandKeyboardGrabV1, zwp_xwayland_keyboard_grab_manager_v1)
 
 #undef BIND
 #undef BIND2
@@ -845,6 +855,7 @@ CREATE(DDESeat)
 CREATE(DDEShell)
 CREATE(Strut)
 CREATE(GlobalProperty)
+CREATE(ZWPXwaylandKeyboardGrabManagerV1)
 
 #undef CREATE
 #undef CREATE2

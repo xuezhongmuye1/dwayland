@@ -76,6 +76,7 @@ set(SERVER_LIB_SRCS
     xdgshell_interface.cpp
     globalproperty_interface.cpp
     remote_access_interface.cpp
+    xwayland_keyboard_grab_v1_interface.cpp
 )
 
 ecm_qt_declare_logging_category(SERVER_LIB_SRCS
@@ -321,6 +322,11 @@ ecm_add_qtwayland_server_protocol_kde(SERVER_LIB_SRCS
     BASENAME remote-access
 )
 
+ecm_add_qtwayland_server_protocol_kde(SERVER_LIB_SRCS
+    PROTOCOL ${DEEPIN_WAYLAND_PROTOCOLS_DIR}/xwayland-keyboard-grab-unstable-v1.xml
+    BASENAME xwayland-keyboard-grab-unstable-v1
+)
+
 add_library(DWaylandServer ${SERVER_LIB_SRCS})
 
 if(CMAKE_SYSTEM_NAME MATCHES "Linux")
@@ -442,6 +448,7 @@ set(SERVER_LIB_HEADERS
   xdgshell_interface.h
   globalproperty_interface.h
   remote_access_interface.h
+  xwayland_keyboard_grab_v1_interface.h
 )
 
 install(FILES

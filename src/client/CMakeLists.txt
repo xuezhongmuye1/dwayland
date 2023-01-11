@@ -75,6 +75,7 @@ set(CLIENT_LIB_SRCS
     xdgshell_v6.cpp
     xdgshell_stable.cpp
     xdgoutput.cpp
+    xwayland_keyboard_grab_v1.cpp
     globalproperty.cpp
     ../compat/wayland-xdg-shell-v5-protocol.c
 )
@@ -263,6 +264,11 @@ ecm_add_wayland_client_protocol (CLIENT_LIB_SRCS
     BASENAME wlr-data-control-unstable-v1
 )
 
+ecm_add_wayland_client_protocol(CLIENT_LIB_SRCS
+    PROTOCOL ${DEEPIN_WAYLAND_PROTOCOLS_DIR}/xwayland-keyboard-grab-unstable-v1.xml
+    BASENAME xwayland-keyboard-grab-v1
+)
+
 set(CLIENT_GENERATED_FILES
     ${CMAKE_CURRENT_BINARY_DIR}/wayland-fullscreen-shell-client-protocol.h
     ${CMAKE_CURRENT_BINARY_DIR}/wayland-output-management-client-protocol.h
@@ -295,6 +301,7 @@ set(CLIENT_GENERATED_FILES
     ${CMAKE_CURRENT_BINARY_DIR}/wayland-dde-shell-client-protocol.h
     ${CMAKE_CURRENT_BINARY_DIR}/wayland-dde-globalproperty-client-protocol.h
     ${CMAKE_CURRENT_BINARY_DIR}/wayland-wlr-data-control-unstable-v1-protocol.h
+    ${CMAKE_CURRENT_BINARY_DIR}/wayland-xwayland-keyboard-grab-v1-client-protocol.h
 )
 
 set_source_files_properties(${CLIENT_GENERATED_FILES} PROPERTIES SKIP_AUTOMOC ON)
@@ -399,6 +406,7 @@ set(CLIENT_LIB_HEADERS
   xdgshell.h
   xdgforeign.h
   xdgoutput.h
+  xwayland_keyboard_grab_v1.h
   globalproperty.h
 )
 

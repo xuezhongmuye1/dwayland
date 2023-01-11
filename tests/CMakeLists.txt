@@ -46,6 +46,9 @@ add_executable(shadowTest shadowtest.cpp)
 target_link_libraries(shadowTest Deepin::WaylandClient)
 ecm_mark_as_test(shadowTest)
 
+add_executable(grabTest grabtest.cpp)
+target_link_libraries(grabTest Deepin::WaylandClient)
+ecm_mark_as_test(grabTest)
 
 if (Qt5Widgets_FOUND)
     add_executable(dpmsTest dpmstest.cpp)
